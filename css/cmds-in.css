@@ -86,6 +86,7 @@ body {
   line-height: 1.5;
   border-left: 3px solid #98D98E;
   border-right: 3px solid #98D98E;
+  color: #0e0e0e;
 }
 
 .wrap ul li p:last-child {
