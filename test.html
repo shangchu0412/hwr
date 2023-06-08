@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <style>
+    #lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      text-align: center;
+    }
+
+    #lightbox-image {
+      max-width: 80%;
+      max-height: 80%;
+    }
+
+    .close {
+      color: white;
+      font-size: 40px;
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      cursor: pointer;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      width: 50px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      border-radius: 36px;
+    }
+
+    .prev {
+      left: 20px;
+    }
+
+    .prev span,
+    .next span {
+      line-height: 50px;
+      text-align: center;
+    }
+
+    .next {
+      right: 20px;
+    }
+
+    #thumbnails img {
+      cursor: pointer;
+      width: 300px;
+      height: 300px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div id="thumbnails">
+    <img src="./img/1.jpg" alt="Image 1">
+    <img src="./img/2.jpg" alt="Image 2">
+    <img src="./img/3.jpg" alt="Image 3">
+    <!-- 添加更多缩略图 -->
+  </div>
+
+  <div id="lightbox">
+    <span class="close">&times;</span>
+    <img id="lightbox-image" src="">
+    <div class="prev">
+      <span class="material-symbols-outlined">
+        arrow_back_ios_new
+        </span>
+    </div>
+    <div class="next">
+      <span class="material-symbols-outlined">
+        arrow_forward_ios
+      </span>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      // 显示大图
+      $('#thumbnails img').click(function() {
+        var imageSrc = $(this).attr('src');
+        $('#lightbox-image').attr('src', imageSrc);
+        $('#lightbox').fadeIn();
+      });
+
+      // 关闭大图
+      $('.close').click(function() {
+        $('#lightbox').fadeOut();
+      });
+
+      // 切换图片
+      $('.prev').click(function() {
+        var currentImage = $('#lightbox-image').attr('src');
+        var prevImage = $('#thumbnails img[src="' + currentImage + '"]').prev().attr('src');
+        if (prevImage) {
+          $('#lightbox-image').attr('src', prevImage);
+        }
+      });
+
+      $('.next').click(function() {
+        var currentImage = $('#lightbox-image').attr('src');
+        var nextImage = $('#thumbnails img[src="' + currentImage + '"]').next().attr('src');
+        if (nextImage) {
+          $('#lightbox-image').attr('src', nextImage);
+        }
+      });
+    });
+  </script>
+
+</body>
+
+</html>
