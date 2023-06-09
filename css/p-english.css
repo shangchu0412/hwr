@@ -137,6 +137,10 @@ h3 {
   box-shadow: 1px 1px 1px 1px rgba(0, 32, 106, .25);
 }
 
+.wrap .listen span:hover {
+  opacity: .8;
+}
+
 .wrap .translation {
   color: #0580e8;
 }
