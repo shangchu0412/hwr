@@ -1600,7 +1600,26 @@
   </div>
   <script>
     $(document).ready(function() {
-      $('.top').click(function() {
+      var topButton = $('.top');
+
+      // 初始时隐藏按钮
+      topButton.hide();
+
+      // 监听页面滚动事件
+      $(window).scroll(function() {
+        // 获取滚动距离
+        var scrollPos = $(window).scrollTop();
+
+        // 根据滚动距离控制按钮显示/隐藏
+        if (scrollPos > 0) {
+          topButton.show();
+        } else {
+          topButton.hide();
+        }
+      });
+
+      // 点击按钮时滚动到顶部
+      topButton.click(function() {
         $('html, body').animate({
           scrollTop: 0
         }, 'slow');
