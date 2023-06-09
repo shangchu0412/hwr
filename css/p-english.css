@@ -64,19 +64,57 @@ body {
   font-family: 'Noto Sans TC', sans-serif;
 }
 
-.wrap {
-  margin: 0 auto;
-  max-width: 1200px;
+/* header */
+
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #00206A;
 }
 
-.wrap h1 {
+.header h1 {
   padding: 20px;
-  background-color: #00206A;
   color: #fff;
   font-size: 48px;
   font-weight: 900;
   text-align: center;
   line-height: 1.2;
+}
+
+.header .nav {
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+.header .nav ul  {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header .nav ul li {
+  width: 50%;
+}
+
+.header .nav ul li a {
+  display: block;
+  padding: 20px;
+  text-align: center;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.header .nav ul li a:hover {
+  background-color: #6B0B32;
+}
+
+/* content */
+
+.wrap {
+  margin: 0 auto;
+  max-width: 1200px;
 }
 
 .wrap h2 {

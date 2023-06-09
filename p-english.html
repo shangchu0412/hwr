@@ -12,13 +12,21 @@
 </head>
 
 <body>
-  <div class="wrap">
+  <div class="header">
     <h1>
       專業英文期末測驗
       <br>
       | 生字表一覽 |
     </h1>
-    <h2>
+    <div class="nav">
+      <ul>
+        <li><a href="#unit04">Unit 04</a></li>
+        <li><a href="#unit11">Unit 11</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap">
+    <h2 id="unit04">
       生字範圍「Book 3 Unit 4 Motion Design」
     </h2>
     <p class="notice">辭彙顏色<span class="red">
@@ -757,7 +765,7 @@
         </div>
       </li>
     </ul>
-    <h2>
+    <h2 id="unit11">
       生字範圍「Book 3 Unit 11 Advertising Design」
     </h2>
     <p class="notice">辭彙顏色<span class="red">
@@ -1624,6 +1632,70 @@
           scrollTop: 0
         }, 'slow');
       });
+    });
+
+
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var headerHeight = document.querySelector('.header').offsetHeight;
+      var wrapElement = document.querySelector('.wrap');
+      wrapElement.style.marginTop = headerHeight + 'px';
+    });
+
+    window.addEventListener('resize', function() {
+      var headerHeight = document.querySelector('.header').offsetHeight;
+      var wrapElement = document.querySelector('.wrap');
+      wrapElement.style.marginTop = headerHeight + 'px';
+    });
+
+
+    window.addEventListener('scroll', function() {
+      var header = document.querySelector('.header');
+      var headerTitle = document.querySelector('.header h1');
+      var navLinks = document.querySelectorAll('.header .nav ul li a');
+
+      // 计算滚动距离
+      var scrollDistance = window.pageYOffset || document.documentElement.scrollTop;
+
+      // 根据滚动距离修改样式
+      if (scrollDistance > 0) {
+        header.style.height = 'auto';
+        headerTitle.style.fontSize = '24px';
+
+        // 遍历所有匹配的链接元素并应用样式
+        navLinks.forEach(function(link) {
+          link.style.fontSize = '20px';
+        });
+      } else {
+        header.style.height = 'auto';
+        headerTitle.style.fontSize = '48px';
+
+        // 遍历所有匹配的链接元素并应用样式
+        navLinks.forEach(function(link) {
+          link.style.fontSize = '32px';
+        });
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+      var navLinks = document.querySelectorAll('.nav a');
+
+      // 监听导航链接的点击事件
+      for (var i = 0; i < navLinks.length; i++) {
+        navLinks[i].addEventListener('click', function(event) {
+          event.preventDefault();
+          var targetId = this.getAttribute('href');
+          var targetElement = document.querySelector(targetId);
+          var headerHeight = document.querySelector('.header').offsetHeight;
+          var targetOffset = targetElement.offsetTop - headerHeight;
+
+          // 平滑滚动到目标位置
+          window.scrollTo({
+            top: targetOffset,
+            behavior: 'smooth'
+          });
+        });
+      }
     });
   </script>
 </body>
