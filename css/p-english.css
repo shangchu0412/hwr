@@ -116,8 +116,11 @@ body {
   background-color: #6B0B32;
 }
 
-/* content */
+.active {
+  background-color: #6B0B32;
+}
 
+/* content */
 .wrap {
   margin: 0 auto;
   max-width: 1200px;
