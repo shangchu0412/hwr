@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var topButton = $('.top');
   var navLinks = $('.header .nav ul li a');
+  let headerTop = $('.header h1');
 
   // 初始时隐藏按钮
   topButton.hide();
@@ -60,6 +61,14 @@ $(document).ready(function() {
       scrollTop: 0
     }, 'slow');
   });
+
+  // 点击按钮时滚动到顶部
+  headerTop.click(function() {
+    $('html, body').animate({
+      scrollTop: 0
+    }, 'slow');
+  });
+
 });
 
 
