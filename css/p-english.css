@@ -218,6 +218,7 @@ h3 {
 }
 
 .footer .calculate {
+  position: relative;
   width: 100px;
   margin: 24px auto 0;
   display: flex;
@@ -225,6 +226,19 @@ h3 {
   align-items: center;
   border: 1px solid #fff;
   border-radius: 5px;
+}
+
+.footer .calculate:hover::before {
+  content: 'Online user';
+  position: absolute;
+  display: block;
+  width: 80px;
+  height: 30px;
+  top: -20px;
+  right: -30px;
+  font-size: 8px;
+  background-image: url(../img/message.png);
+  color: #00206a;
 }
 
 .realtimeuserscounter a {
