@@ -109,26 +109,3 @@ window.addEventListener('scroll', function() {
     });
   }
 });
-
-
-// nav選單點擊後平滑滾動到區塊位置
-window.addEventListener('DOMContentLoaded', function() {
-  var navLinks = document.querySelectorAll('.header .nav ul li a');
-
-  // 监听导航链接的点击事件
-  for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].addEventListener('click', function(event) {
-      event.preventDefault();
-      var targetId = this.getAttribute('href');
-      var targetElement = document.querySelector(targetId);
-      var headerHeight = document.querySelector('.header').offsetHeight;
-      var targetOffset = targetElement.offsetTop - headerHeight;
-
-      // 平滑滚动到目标位置
-      window.scrollTo({
-        top: targetOffset,
-        behavior: 'smooth'
-      });
-    });
-  }
-});
