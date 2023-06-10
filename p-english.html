@@ -1609,6 +1609,7 @@
       <p>專業英文選用課本：Express Publishing | CAREER PATHS Art & Design |
         <a href="https://www.expressdigibooks.com/" target="_blank">線上學習</a>
       </p>
+      <p id="onlineCount">正在获取...</p>
     </div>
     <div class="top">
       <span class="material-symbols-outlined">
@@ -1618,6 +1619,29 @@
   </div>
   <script src="./js/p-english.js"></script>
   <!-- <script src="./js/p-text.js"></script> -->
+  <script>
+    function getOnlineCount() {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+        if (xhr.status === 200) {
+          var onlineCount = xhr.responseText;
+          document.getElementById('onlineCount').innerText = '當前在線人數：' + onlineCount;
+        } else {
+          console.log('請求失敗：' + xhr.status);
+        }
+      }
+    };
+
+    xhr.open('GET', 'https://script.google.com/macros/s/AKfycbxVyiXBnbNWxj-eDPrAyADBJ5HRbcksPnfWG_D4gaIlrH_Pvz7DEXDOY1jk67dIbXEt5g/exec', true);
+    xhr.send();
+  }
+
+  // 页面加载完成后获取在线观看人数
+  window.onload = function() {
+    getOnlineCount();
+  };
+  </script>
 </body>
 
 </html>
