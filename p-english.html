@@ -1621,24 +1621,27 @@
   <!-- <script src="./js/p-text.js"></script> -->
 
   <script>
-    window.onload = function() {
-      // 發送 GET 請求到 Google Apps Script
-      fetch('https://script.google.com/macros/s/AKfycbzWhs-WdgwoXLqH30Xhff8jXzGgr2H3nzJT54eVLbDeyzsAtD_vs1Skq3MnC15Fla-E/exec')
-        .then(function(response) {
-          if (response.ok) {
-            return response.text();
-          } else {
-            throw new Error('請求失敗：' + response.status);
-          }
-        })
-        .then(function(data) {
-          // 更新線上觀看人數
-          document.getElementById('onlineCount').innerText = '目前線上觀看人數：' + data;
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
-    };
+window.onload = function() {
+  // 發送 POST 請求到 Google Apps Script
+  fetch('https://script.google.com/macros/s/AKfycbxVyiXBnbNWxj-eDPrAyADBJ5HRbcksPnfWG_D4gaIlrH_Pvz7DEXDOY1jk67dIbXEt5g/exec', {
+    method: 'POST'
+  })
+    .then(function(response) {
+      if (response.ok) {
+        return response.text();
+      } else {
+        throw new Error('請求失敗：' + response.status);
+      }
+    })
+    .then(function(data) {
+      // 更新線上觀看人數
+      document.getElementById('onlineCount').innerText = '目前線上觀看人數：' + data;
+    })
+    .catch(function(error) {
+      console.log(error);
+    });
+};
+
   </script>
 </body>
 
