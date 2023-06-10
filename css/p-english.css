@@ -196,6 +196,7 @@ h3 {
   color: #0580e8;
 }
 
+/* footer */
 .footer {
   margin-top: 24px;
   padding: 50px 0;
@@ -216,6 +217,21 @@ h3 {
   text-decoration: underline;
 }
 
+.footer .calculate {
+  width: 100px;
+  margin: 24px auto 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #fff;
+  border-radius: 5px;
+}
+
+.realtimeuserscounter a {
+  display: none;
+}
+
+/* 置頂按鈕 */
 .top {
   position: fixed;
   bottom: 30px;
