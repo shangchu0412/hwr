@@ -101,7 +101,7 @@ window.addEventListener('scroll', function() {
     });
   } else {
     header.style.height = 'auto';
-    headerTitle.style.fontSize = '48px';
+    headerTitle.style.fontSize = '40px';
 
     // 遍历所有匹配的链接元素并应用样式
     navLinks.forEach(function(link) {
