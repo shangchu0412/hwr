@@ -2,53 +2,6 @@ $(document).ready(function() {
   var topButton = $('.top');
   var navLinks = $('.header .nav ul li a');
   let headerTop = $('.header h1');
-  // 获取按钮和点赞数的元素
-var likeButton = document.getElementById("likeButton");
-var likeCount = document.getElementById("likeCount");
-var likesDiv = document.querySelector(".likes");
-
-// 初始化点赞数和点赞状态
-var count = 0;
-var hasLiked = false;
-
-// 检查是否已经点赞
-var storedLike = localStorage.getItem("likeState");
-
-// 如果已经点赞过，更新点赞数和按钮状态
-if (storedLike) {
-  var storedLikeObj = JSON.parse(storedLike);
-  count = storedLikeObj.count;
-  hasLiked = storedLikeObj.hasLiked;
-  likeCount.innerHTML = count;
-  if (hasLiked) {
-    likesDiv.classList.add("liked");
-  }
-}
-
-// 点击按钮时执行相应操作
-likeButton.addEventListener("click", function() {
-  // 如果已经点赞过，则取消点赞
-  if (hasLiked) {
-    count--;
-    likeCount.innerHTML = count;
-    likesDiv.classList.remove("liked");
-    hasLiked = false;
-  } else {
-    // 如果未点赞，则增加点赞数
-    count++;
-    likeCount.innerHTML = count;
-    likesDiv.classList.add("liked");
-    hasLiked = true;
-  }
-
-  // 保存点赞状态和点赞数到本地存储
-  var likeState = {
-    count: count,
-    hasLiked: hasLiked
-  };
-  localStorage.setItem("likeState", JSON.stringify(likeState));
-});
-
 
   // 初始时隐藏按钮
   topButton.hide();
