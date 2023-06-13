@@ -78,6 +78,12 @@ body {
   text-align: center;
 }
 
+.wrap h1 .small {
+  margin-left: 0;
+  font-size: 20px;
+  letter-spacing: normal;
+}
+
 .wrap ul li h2 {
   padding: 20px;
   font-size: 28px;
