@@ -143,7 +143,7 @@ audioFiles.sort(function() {
 var currentAudioIndex = 0;
 
 // 记录是否处于暂停状态
-var isPaused = false;
+var isPaused = true;
 
 // 当前播放的音频元素
 var currentAudioElement;
@@ -169,23 +169,28 @@ function playAudio() {
 function pauseAudio() {
   if (currentAudioElement) {
     currentAudioElement.pause();
+    currentAudioElement.currentTime = 0; // 将播放进度重置为0
   }
 }
 
 // 为 repeat 元素添加点击事件监听器
 repeatElement.addEventListener('click', function() {
-  if (!isPaused) {
-    // 当前处于播放状态，点击按钮暂停播放
-    pauseAudio();
-    isPaused = true;
-    repeatElement.innerHTML = '<i class="material-symbols-outlined">repeat</i>';
-  } else {
+  if (isPaused) {
     // 当前处于暂停状态，点击按钮继续播放
     isPaused = false;
-    playAudio();
     repeatElement.innerHTML = '<i class="material-symbols-outlined">stop</i>';
+    playAudio();
+  } else {
+    // 当前处于播放状态，点击按钮暂停播放
+    isPaused = true;
+    repeatElement.innerHTML = '<i class="material-symbols-outlined">repeat</i>';
+    pauseAudio();
   }
 });
 
-// 开始播放音频
-playAudio();
+// 用户交互事件触发播放
+repeatElement.addEventListener('click', function() {
+  if (isPaused) {
+    repeatElement.removeEventListener('click', playAudio);
+  }
+});
