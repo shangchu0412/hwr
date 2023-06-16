@@ -189,5 +189,20 @@ function togglePlay() {
 // 为 repeat 元素添加点击事件监听器
 repeatElement.addEventListener('click', togglePlay);
 
-// 开始播放音频
-playAudio();
+// 在移动设备上自动播放
+var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+if (isMobileDevice) {
+  // 解除静音限制
+  document.body.addEventListener('touchstart', enableAudio);
+
+  // 自动播放音频
+  function enableAudio() {
+    document.body.removeEventListener('touchstart', enableAudio);
+    playAudio();
+    isPlaying = true;
+  }
+} else {
+  // 开始播放音频
+  playAudio();
+  isPlaying = true;
+}
