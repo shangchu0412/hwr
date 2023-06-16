@@ -142,8 +142,8 @@ audioFiles.sort(function() {
 // 当前播放的音频索引
 var currentAudioIndex = 0;
 
-// 记录是否处于暂停状态
-var isPaused = true;
+// 记录是否处于播放状态
+var isPlaying = false;
 
 // 当前播放的音频元素
 var currentAudioElement;
@@ -155,7 +155,7 @@ function playAudio() {
   currentAudioElement.addEventListener('ended', function() {
     // 当前音频播放完毕时，等待5秒后播放下一个音频
     setTimeout(function() {
-      if (!isPaused) {
+      if (isPlaying) {
         currentAudioIndex = (currentAudioIndex + 1) % audioFiles.length;
         playAudio();
       }
@@ -173,24 +173,21 @@ function pauseAudio() {
   }
 }
 
-// 为 repeat 元素添加点击事件监听器
-repeatElement.addEventListener('click', function() {
-  if (isPaused) {
-    // 当前处于暂停状态，点击按钮继续播放
-    isPaused = false;
-    repeatElement.innerHTML = '<i class="material-symbols-outlined">stop</i>';
-    playAudio();
-  } else {
-    // 当前处于播放状态，点击按钮暂停播放
-    isPaused = true;
-    repeatElement.innerHTML = '<i class="material-symbols-outlined">repeat</i>';
+// 切换播放状态
+function togglePlay() {
+  if (isPlaying) {
     pauseAudio();
+    isPlaying = false;
+    repeatElement.innerHTML = '<i class="material-symbols-outlined">repeat</i>';
+  } else {
+    playAudio();
+    isPlaying = true;
+    repeatElement.innerHTML = '<i class="material-symbols-outlined">stop</i>';
   }
-});
+}
 
-// 用户交互事件触发播放
-repeatElement.addEventListener('click', function() {
-  if (isPaused) {
-    repeatElement.removeEventListener('click', playAudio);
-  }
-});
+// 为 repeat 元素添加点击事件监听器
+repeatElement.addEventListener('click', togglePlay);
+
+// 开始播放音频
+playAudio();
