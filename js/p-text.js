@@ -193,8 +193,10 @@ if (isMobileDevice) {
   // 自动播放音频
   function enableAudio() {
     document.body.removeEventListener('touchstart', enableAudio);
-    playAudio();
-    isPlaying = true;
+    if (!isPlaying) {
+      playAudio();
+      isPlaying = true;
+    }
   }
 } else {
   // 开始播放音频
