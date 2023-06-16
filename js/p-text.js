@@ -134,11 +134,6 @@ audioElements.forEach(function(audioElement) {
   audioFiles.push(audioSrc);
 });
 
-// 随机排序音频文件数组
-audioFiles.sort(function() {
-  return 0.5 - Math.random();
-});
-
 // 当前播放的音频索引
 var currentAudioIndex = 0;
 
