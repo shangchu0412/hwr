@@ -187,13 +187,24 @@ repeatElement.addEventListener('click', togglePlay);
 // 在移动设备上自动播放
 var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 if (isMobileDevice) {
-  var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
+  // 创建一个触摸事件
+  var touchEvent = new TouchEvent('touchstart', {
+    bubbles: true,
+    cancelable: true,
+    view: window
+  });
 
-  repeatElement.addEventListener(touchEvent, function() {
+  // 添加一个触摸事件监听器
+  repeatElement.addEventListener('click', function() {
     if (!isPlaying) {
       playAudio();
       isPlaying = true;
     }
+  });
+
+  // 在页面加载后模拟触摸事件以解除自动播放限制
+  window.addEventListener('load', function() {
+    document.body.dispatchEvent(touchEvent);
   });
 } else {
   // 开始播放音频
