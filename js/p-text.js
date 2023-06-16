@@ -134,6 +134,11 @@ audioElements.forEach(function(audioElement) {
   audioFiles.push(audioSrc);
 });
 
+// 随机排序音频文件数组
+audioFiles.sort(function() {
+  return 0.5 - Math.random();
+});
+
 // 当前播放的音频索引
 var currentAudioIndex = 0;
 
@@ -183,31 +188,3 @@ function togglePlay() {
 
 // 为 repeat 元素添加点击事件监听器
 repeatElement.addEventListener('click', togglePlay);
-
-// 在移动设备上自动播放
-var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-if (isMobileDevice) {
-  // 创建一个触摸事件
-  var touchEvent = new TouchEvent('touchstart', {
-    bubbles: true,
-    cancelable: true,
-    view: window
-  });
-
-  // 添加一个触摸事件监听器
-  repeatElement.addEventListener('click', function() {
-    if (!isPlaying) {
-      playAudio();
-      isPlaying = true;
-    }
-  });
-
-  // 在页面加载后模拟触摸事件以解除自动播放限制
-  window.addEventListener('load', function() {
-    document.body.dispatchEvent(touchEvent);
-  });
-} else {
-  // 开始播放音频
-  playAudio();
-  isPlaying = true;
-}
