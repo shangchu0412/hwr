@@ -197,6 +197,35 @@ h3 {
   color: #0580e8;
 }
 
+.practise {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  background-color: #1d2a57;
+}
+
+.practise p {
+  margin-right: 5px;
+  color: #fff;
+}
+
+.practise #repeat i {
+  display: flex;
+  padding: 5px;
+  background-color: #fff;
+  color: #00206A;
+  border-radius: 36px;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+  box-shadow: 1px 1px 1px 1px rgba(34, 34, 34, 0.25);
+}
+
+.practise #repeat:hover i {
+  opacity: .8;
+}
+
 /* footer */
 .footer {
   margin-top: 24px;
