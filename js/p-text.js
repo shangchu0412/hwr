@@ -187,17 +187,14 @@ repeatElement.addEventListener('click', togglePlay);
 // 在移动设备上自动播放
 var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 if (isMobileDevice) {
-  // 解除静音限制
-  document.body.addEventListener('touchstart', enableAudio);
+  var touchEvent = 'ontouchstart' in window ? 'touchstart' : 'click';
 
-  // 自动播放音频
-  function enableAudio() {
-    document.body.removeEventListener('touchstart', enableAudio);
+  repeatElement.addEventListener(touchEvent, function() {
     if (!isPlaying) {
       playAudio();
       isPlaying = true;
     }
-  }
+  });
 } else {
   // 开始播放音频
   playAudio();
